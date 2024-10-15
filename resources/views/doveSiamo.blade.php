@@ -24,9 +24,23 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/chi-siamo">Chi siamo</a>
                     </li>
+
+
+                    <li class="nav-item">
+          <a class="nav-link" href="{{route('docenti')}}">Docenti</a>
+        </li>
+
+
                     <li class="nav-item">
                         <a class="nav-link" href="/dove-siamo">Dove Siamo</a>
                     </li>
+
+
+                    <li class="nav-item">
+          <a class="nav-link" href="/cosa-sappiamo">Cosa Sappiamo</a>
+        </li>
+
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Dropdown

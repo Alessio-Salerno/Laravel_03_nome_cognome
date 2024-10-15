@@ -70,32 +70,31 @@ I nostri servizi
 
 <!-- FINE NAV -->
 
+<header class="header">
+  <div class="container-fluid h-100">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-md-6 col-12 text-center">
+        <h2 class="text-center text-black">Tutti i film</h2>
+      </div>
+    </div>
 
-<div class="container-fluid bg-background">
-<div class="row justify-content-center align-items-center">
-<div class="col-12">
-<h1 class="text-center display-4 py-5 title ">
-I nostri studenti
-</h1>
-</div>
-</div>
-<div class="row justify-content-center ">
-@foreach ( $studenti as $studente )
-<div class="col-12 col-md-3 py-3">
-<div class="card mx-auto" style="width: 18rem;">
-  <img src="https://picsum.photos/200/300" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">{{$studente['name']}} {{$studente['surname']}} </h5>
- 
-    <a href="{{route('studenti.detail', ['id' =>$studente['id']])}}" class="btn btn-primary">Vai al dettaglio</a>
+    <div class="row g-4 justify-content-center"> 
+      @foreach ($movies as $movie)
+        <div class="col-12 col-md-6 col-lg-3 d-flex justify-content-center mb-4"> 
+          <div class="card cardImg" style="width: 18rem;">
+            <img src="{{$movie['img']}}" class="card-img-top" alt="poster di `{{$movie['title']}}`" style="height:270px;">
+            <div class="card-body">
+              <h5 class="card-title">{{$movie['title']}}</h5>
+              <h6 class="card-subtitle text-muted">{{$movie['director']}}</h6>
+              <p class="card-text">{{$movie['genere']}}</p>
+              <a href="{{route('movieDetail', ['id' => $movie['id']])}}" class="btn btn-primary">Leggi di più</a>
+            </div>
+          </div> 
+        </div>
+      @endforeach
+    </div>
   </div>
-</div>
-</div>
-@endforeach   
-</div>
-
-</div>
-
+</header>
 
 
 

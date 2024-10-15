@@ -35,22 +35,20 @@
 <a class="nav-link" href="{{route('docenti')}}">Docenti</a>
 </li>
 
+
 <li class="nav-item">
 <a class="nav-link" href="/dove-siamo">Dove siamo</a>
 </li>
 
-
-<li class="nav-item">
-<a class="nav-link" href="/cosa-sappiamo">Cosa Sappiamo</a>
-</li>
-
-
 <li class="nav-item dropdown">
 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-I nostri servizi
+Dropdown
 </a>
 <ul class="dropdown-menu">
-<li><a class="dropdown-item" href="{{route('movie.list')}}">Tutti i nostri film</a></li>
+<li><a class="dropdown-item" href="#">Action</a></li>
+<li><a class="dropdown-item" href="#">Another action</a></li>
+<li><hr class="dropdown-divider"></li>
+<li><a class="dropdown-item" href="#">Something else here</a></li>
 </ul>
 </li>
 <li class="nav-item">
@@ -75,19 +73,19 @@ I nostri servizi
 <div class="row justify-content-center align-items-center">
 <div class="col-12">
 <h1 class="text-center display-4 py-5 title ">
-I nostri studenti
+I nostri docenti
 </h1>
 </div>
 </div>
 <div class="row justify-content-center ">
-@foreach ( $studenti as $studente )
+@foreach ( $docenti as $docente )
 <div class="col-12 col-md-3 py-3">
 <div class="card mx-auto" style="width: 18rem;">
   <img src="https://picsum.photos/200/300" class="card-img-top" alt="...">
   <div class="card-body">
-    <h5 class="card-title">{{$studente['name']}} {{$studente['surname']}} </h5>
- 
-    <a href="{{route('studenti.detail', ['id' =>$studente['id']])}}" class="btn btn-primary">Vai al dettaglio</a>
+    <h5 class="card-title">{{$docente['name']}} {{$docente['surname']}} </h5>
+    <p class="card-text">{{$docente['materia']}} </p>
+    <a href="{{route('docente.detail', ['name' => $docente['name']])}}" class="btn btn-primary">Vai al dettaglio</a>
   </div>
 </div>
 </div>

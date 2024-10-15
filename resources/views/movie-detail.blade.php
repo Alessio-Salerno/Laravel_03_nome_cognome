@@ -70,32 +70,28 @@ I nostri servizi
 
 <!-- FINE NAV -->
 
+<header class="header">
+  <div class="container-fluid h-100">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-md-6 col-12 text-center">
+        <h2 class="text-center text-black">{{$movie['title']}}</h2>
+      </div>
+    </div>
 
-<div class="container-fluid bg-background">
-<div class="row justify-content-center align-items-center">
-<div class="col-12">
-<h1 class="text-center display-4 py-5 title ">
-I nostri studenti
-</h1>
-</div>
-</div>
-<div class="row justify-content-center ">
-@foreach ( $studenti as $studente )
-<div class="col-12 col-md-3 py-3">
-<div class="card mx-auto" style="width: 18rem;">
-  <img src="https://picsum.photos/200/300" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">{{$studente['name']}} {{$studente['surname']}} </h5>
- 
-    <a href="{{route('studenti.detail', ['id' =>$studente['id']])}}" class="btn btn-primary">Vai al dettaglio</a>
+    <div class="col-12 col-md-6">
+
+    <h5>{{$movie['title']}}</h5>
+    <h6>{{$movie['director']}}</h6>
+    <p>{{$movie['genere']}}</p>
+
+    </div>
+
+    <div class="col-12 col-md-6">
+     <img src="{{$movie['img']}}" alt="">
+    </div>
+  
   </div>
-</div>
-</div>
-@endforeach   
-</div>
-
-</div>
-
+</header>
 
 
 
