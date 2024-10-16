@@ -11,6 +11,7 @@
 
 use App\Http\Controllers\docentiController;
 use App\Http\Controllers\PublicController;
+use App\Http\Controllers\PublicControllerDue;
 use Illuminate\Support\Facades\Route;
 // In caso di errore passare -> \App\Http\Controllers\PublicController
 
@@ -18,7 +19,11 @@ use Illuminate\Support\Facades\Route;
 
 
 
-// ROTTA NOMINALE -> DARE UN ETICHETTA ALLE ROTTE PER RICHIAMARLE
+
+Route::get('/chiSiamo',[PublicController::class, 'chiSiamo'])->name('chi.siamo'); // METODO PER DARE UN NOME ALLA ROTTA
+
+
+
 
 
 Route::get('/', function () {
@@ -27,7 +32,10 @@ Route::get('/', function () {
     //CHIAVE DELL'ARRAY - NOME DELLA VARIABILE SULLA VISTA 
 }); 
 
-Route::get('/chiSiamo',[PublicController::class, 'chiSiamo'])->name('chi.siamo'); // METODO PER DARE UN NOME ALLA ROTTA
+
+
+
+
 
 
 Route::get('/dove-siamo', function () {
@@ -60,66 +68,20 @@ Route::get('/cosa-sappiamo', function() {
 
 
 // ROUTE COSA SAPPIAMO (DETAIL)
-Route::get('/cosa-sappiamo/detail/{name}', function($name) {
-    $users = [
-        ['name'=> 'Mario', 'surname'=> 'Caracciolo' , 'role' => 'Senior Manager'],
-        ['name'=> 'Giuseppe', 'surname'=> 'Rossi' , 'role' => 'Capo Due'],
-        ['name'=> 'Walter', 'surname'=> 'Bianchi' , 'role' => 'Developer'],
-    ];
-
-foreach ($users as $user) {
-    if ($name == $user['name']) {
-        return view ('cosa-sappiamo-detail', ['user' => $user]);
-    }
-}
-
-})->name('cosaSappiamoDetail');
-
-
+Route::get('/cosa-sappiamo/detail/{name}', [App\Http\Controllers\PublicControllerDue::class, 'cosa-sappiamo-detail'])->name('cosaSappiamoDetail');
 
 // ROUTE MOVIES 
-
-Route::get('/movies' , function(){
-// ARRAY MOVIES
-
-$movies = [
-    ['id' =>'1', 'title' =>'Doctor Bave', 'director' =>'Razonate',  'img' =>'https://picsum.photos/200/300', 'genere' =>'Fantascienza' ],
-    ['id' =>'2', 'title' =>'Mafia di oggi', 'director' =>'Biden',  'img' =>'https://picsum.photos/200/300', 'genere' => 'Politica'],
-    ['id' =>'3', 'title' =>'Venom 4', 'director' =>'Trump',  'img' =>'https://picsum.photos/200/300', 'genere' => 'Horror' ],
-    ['id' =>'4', 'title' =>'Spider man', 'director' =>'La Russa',  'img' =>'https://picsum.photos/200/300', 'genere' => 'Comico' ],
-    ['id' =>'5', 'title' =>'Stranger things', 'director' =>'Vannacci',  'img' =>'https://picsum.photos/200/300', 'genere' => 'Europeo' ],
-];
-
-return view('movie.movies', ['movies' => $movies]);
-
-
-
-}) -> name('movie.list');
-
-
+Route::get('/movies', [PublicControllerDue::class, 'moviesList'])->name('movie.list');
 
 // ROTTA PER MOVIE DETAILS
+Route::get('/movie/detail/{id}', [PublicControllerDue::class, 'movieDetail'])->name('movieDetail');
 
-Route::get('/movie/detail/{id}', function($id) {
-    $movies = [
-        ['id' =>'1', 'title' =>'Doctor Bave', 'director' =>'Razonate',  'img' =>'https://picsum.photos/200/300', 'genere' =>'Fantascienza' ],
-        ['id' =>'2', 'title' =>'Mafia di oggi', 'director' =>'Biden',  'img' =>'https://picsum.photos/200/300', 'genere' => 'Politica'],
-        ['id' =>'3', 'title' =>'Venom 4', 'director' =>'Trump',  'img' =>'https://picsum.photos/200/300', 'genere' => 'Horror' ],
-        ['id' =>'4', 'title' =>'Spider man', 'director' =>'La Russa',  'img' =>'https://picsum.photos/200/300', 'genere' => 'Comico' ],
-        ['id' =>'5', 'title' =>'Stranger things', 'director' =>'Vannacci',  'img' =>'https://picsum.photos/200/300', 'genere' => 'Europeo' ],
-    ];
 
-    // Cerca il film con l'id specificato
-    foreach ($movies as $movie) {
-        if ($id == $movie['id']) {
-            // Passa il film trovato alla vista 'movie-detail'
-            return view('movie-detail', ['movie' => $movie]);
-        }
-    }
 
-    // Se non trova il film, mostra un errore 404
-    abort(404, 'Film non trovato');
-})->name('movieDetail');
+
+
+
+
 
 
 
